@@ -41,3 +41,24 @@ if (avg >= 60 && attendance >= 60) {
     `${studentName} has failed the exam with an average ${avg}% and attendance of ${attendance} `,
   );
 }
+
+// discound amount
+let totalPrice = 100;
+let discound = 0;
+
+if (totalPrice >= 100) {
+  discound = 20;
+} else if (totalPrice > 50) {
+  discound = 10;
+} else if (totalPrice > 5) {
+  discound = 5;
+} else {
+  discound = 0;
+}
+
+let discoundAmount = (totalPrice * discound) / 100;
+let finalPrice = totalPrice - discoundAmount;
+
+console.log(`Price ${totalPrice}$`);
+console.log(`discound ${discoundAmount}%`);
+console.log(`finalPrice ${finalPrice}$`);

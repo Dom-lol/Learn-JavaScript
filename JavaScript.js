@@ -80,3 +80,68 @@ if (average >= 90) {
 }
 
 console.log(average);
+
+// Ternary
+let Age = 18;
+let myAge = Age >= 18 ? "You are Adult" : "You are young";
+console.log(myAge);
+
+// Switch Control Flow
+switch (new Date().getDay()) {
+  case 0:
+    day = "Sunday";
+    break;
+  case 1:
+    day = "Monday";
+    break;
+  case 2:
+    day = "Tueday";
+    break;
+  case 3:
+    day = "Wednesday";
+    break;
+  case 4:
+    day = "Thurday";
+    break;
+  case 5:
+    day = "Friday";
+    break;
+  case 6:
+    day = "Saturday";
+    break;
+
+  default:
+    day = "Invalid Day";
+    break;
+}
+
+console.log(day);
+
+// Logical Operators
+// &&:AND, ||:OR, !:NOT
+
+// &&
+let name = "Oudom";
+let password = "123";
+
+if (name === "Oudom" && password === "123") {
+  console.log("Success Login!!");
+} else {
+  console.log("Login Failed");
+}
+
+// ||
+let role = "Staff";
+if (role === "Admin" || role === "Staff") {
+  console.log("Login Success!!");
+} else {
+  console.log("Failed Login");
+}
+
+// !
+let teacher = "Oudom";
+if (teacher != "Oudom") {
+  console.log("You are not Teacher");
+} else {
+  console.log("You are Teacher");
+}
