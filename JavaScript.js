@@ -145,3 +145,143 @@ if (teacher != "Oudom") {
 } else {
   console.log("You are Teacher");
 }
+
+// Loop
+// for loop
+// i = 0;
+// for (i; i <= 10; i++) {
+//   console.log(i + " Hello");
+// }
+// //while loop
+// let l = 0;
+// while (l <= 20) {
+//   console.log(l);
+//   l++;
+// }
+// Do While loop
+// let i = 1;
+// do {
+//   console.log(i);
+//   i++;
+//   if (i === 5) {
+//     continue;
+//   }
+// } while (i <= 10);
+
+for (i = 1; i <= 10; i++) {
+  if (i === 5) {
+    continue;
+  } else if (i === 8) {
+    break;
+  }
+  console.log(i);
+}
+
+// js string method
+let namez = "chea oudom";
+console.log(namez.includes("ch"));
+
+// Function
+function myFunction() {
+  console.log("HEllo");
+}
+myFunction();
+
+function calculateTotal(price, qty) {
+  let total = price * qty;
+
+  console.log(total);
+}
+calculateTotal(40, 2);
+
+// Expression Function
+const Functionmy = function (name) {
+  return name;
+};
+console.log("Oudommm");
+
+// // js timers
+// setTimeout()(function () {
+//   console.log("Hello");
+// }, 3000);
+
+// // // setInterval()
+// // let count = 1;
+// // setInterval(function () {
+// //   console.log(count);
+// //   count++;
+// // }, 1000);
+// setTimeout;
+// // clearTimeout()
+// let timer = setTimeout(function () {
+//   console.log("Endd");
+// }, 5000);
+
+// clearTimeout(timer);
+// clearInterval;
+
+// Object
+// let student = {
+//   id: 1,
+//   name: "Chea Oudom",
+//   age: 22,
+//   address: "PP",
+// };
+
+// console.log(student);
+
+// obj method
+let userInfo = {
+  id: 1,
+  name: "Yong",
+  address: "PP",
+
+  userDetail: function () {
+    console.log(
+      `User ID: ${this.id}, name: ${this.name}, address: ${this.address}`,
+    );
+  },
+};
+
+userInfo.userDetail();
+
+// obj constructor
+function student(name, age, address) {
+  this.name = name;
+  this.age = age;
+  this.address = address;
+}
+
+student1 = new student("Dom", 22, "pp");
+console.log(student1);
+student2 = new student("Srun", 22, "pp");
+console.log(student2);
+
+// Date
+let date = new Date();
+console.log(date);
+console.log(date.getFullYear());
+console.log(date.getTime());
+
+// Array
+let fruits = ["Apple", "Banana", "Orange"];
+console.log(fruits);
+
+// Array Methods
+let fruit = ["Apple", "Banana", "Orange"];
+console.log(fruit.toString());
+console.log(fruit.length);
+console.log(fruit.pop());
+console.log(fruit.push("Egg"));
+console.log(fruit);
+
+// sort and reverse
+let car = ["Toyota", "Luxus", "tesla"];
+console.log(car);
+console.log(car.sort());
+console.log(car.reverse());
+
+// array loop
+for (let i = 0; i < car.length; i++) {
+  console.log(car[i]);
+}
