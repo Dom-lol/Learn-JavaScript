@@ -292,6 +292,12 @@ let Students = [
     code: 100,
     data: 9,
   },
+  {
+    name: "Yong",
+    mis: 8,
+    code: 10,
+    data: 9,
+  },
 ];
 
 for (let i = 0; i < Students.length; i++) {

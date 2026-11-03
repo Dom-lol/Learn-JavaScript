@@ -285,3 +285,61 @@ console.log(car.reverse());
 for (let i = 0; i < car.length; i++) {
   console.log(car[i]);
 }
+
+// Sets
+let numbers = new Set([1, 2, 3, 4, 4, 4, 2, 6, 5, 7, 7]);
+console.log(numbers);
+
+let fruitss = new Set(["apple", "Orange", "apple", "rango", "Orange"]);
+console.log(fruitss);
+
+// Set Methods
+// set with ForEach
+numbers.forEach(function (subject) {
+  console.log(subject);
+});
+
+// Course system
+let courses = new Set(["MIS", "Code", "Web", "Data", "MIS", "Code"]);
+console.log(courses);
+
+courses.add("CSS");
+courses.add("JS");
+courses.add("Java");
+
+courses.delete("Web");
+courses.delete("Code");
+console.log(`Total courses: ${courses.size}`);
+
+if (courses.has("MIS")) {
+  console.log("Course is available");
+} else {
+  console.log("Course is not available");
+}
+
+console.log(`Course list :`);
+let num = 1;
+courses.forEach(function (param) {
+  console.log(`${num} . ${param}`);
+  num++;
+});
+
+// Map
+const info = new Map();
+
+info.set("name", "Chea Oudom");
+info.set("Age", 22);
+info.set("Address", "PP");
+
+console.log(info);
+console.log(info.get("name"));
+
+console.log(info.size);
+
+console.log(info.delete("Age"));
+console.log(info.has("name"));
+// Map Methods
+
+for (let [key, value] of info) {
+  console.log(key + ":" + value);
+}
