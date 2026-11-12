@@ -33,4 +33,6 @@ hideText.addEventListener("click", function () {
 reset.addEventListener("click", function () {
   studentName.textContent = "Student Name";
   studentName.style.color = "black";
+  studentName.style.display = "block";
+  nameinp.value = "";
 });
