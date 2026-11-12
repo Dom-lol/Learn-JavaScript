@@ -9,6 +9,12 @@ const reset = document.querySelector("#reset");
 
 // btn change Name
 changename.addEventListener("click", function () {
+  if (!nameinp.value.trim()) {
+    alert("Can't be empty");
+
+    nameinp.value = "";
+  }
+
   if (nameinp.value.trim() !== "") {
     studentName.textContent = nameinp.value.trim();
   } else {
