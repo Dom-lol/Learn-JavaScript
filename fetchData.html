@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const url = "https://jsonplaceholder.typicode.com/users";
+      async function fetchData() {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`http error status: ${response.status}`);
+          }
+          const data = await response.json();
+          data.forEach((user) => {
+            console.log(`Name: ${user.name}`);
+          });
+        } catch (error) {
+          console.error(`Error fetching data ${error}`);
+        }
+      }
+      fetchData();
+    </script>
+  </body>
+</html>

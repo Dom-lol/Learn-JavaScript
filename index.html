@@ -1,12 +1,74 @@
 <!doctype html>
-<html lang="en">
+<html lang="km">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./" />
-    <title>Document</title>
+    <title>Users List - Fetch & DOM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <script src="./JavaScript.js"></script>
+  <body class="bg-slate-950 text-slate-100 min-h-screen p-6">
+    <div
+      class="max-w-xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-lg"
+    >
+      <h1 class="text-2xl font-bold text-amber-400 mb-4">
+        បញ្ជីឈ្មោះអ្នកប្រើប្រាស់
+      </h1>
+
+      <!-- បង្ហាញ Loading / Error / Empty state លើ UI -->
+      <p id="statusMessage" class="text-sm text-slate-400 mb-4"></p>
+
+      <!-- Container សម្រាប់ Render បញ្ជី -->
+      <ul id="userList" class="space-y-2"></ul>
+    </div>
+
+    <script>
+      const url = "https://jsonplaceholder.typicode.com/users";
+
+      // ១. ចាប់យក Elements ពី DOM ម្តងទុកជាមុន
+      const statusEl = document.getElementById("statusMessage");
+      const userListEl = document.getElementById("userList");
+
+      // ២. Function សម្រាប់ Render ទិន្នន័យចូល DOM
+      function renderUsers(users) {
+        // សម្អាតបញ្ជីចាស់មុន ដើម្បីការពារកុំឱ្យទិន្នន័យជាន់គ្នា
+        userListEl.innerHTML = "";
+
+        if (!Array.isArray(users) || users.length === 0) {
+          statusEl.textContent = "គ្មានទិន្នន័យអ្នកប្រើប្រាស់ទេ។";
+          return;
+        }
+
+        statusEl.textContent = "";
+
+        users.forEach((user) => {
+          const li = document.createElement("li");
+
+          li.textContent = `${user.name} (${user.email})`;
+          userListEl.appendChild(li);
+        });
+      }
+
+      // ៣. Function ទាញទិន្នន័យដោយប្រើ async/await និង try/catch
+      async function fetchData() {
+        statusEl.textContent = "កំពុងទាញទិន្នន័យ...";
+        userListEl.innerHTML = "";
+
+        try {
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          renderUsers(data);
+        } catch (error) {
+          statusEl.textContent = `បរាជ័យក្នុងការទាញទិន្នន័យ៖ ${error.message}`;
+          console.error("Error fetching data:", error);
+        }
+      }
+
+      fetchData();
+    </script>
   </body>
 </html>

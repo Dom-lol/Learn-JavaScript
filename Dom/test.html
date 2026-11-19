@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>កម្មវិធី Todo List - JavaScript DOM</title>
+    <style>
+      /* ផ្នែកតុបតែង CSS សាមញ្ញ */
+      body {
+        font-family: "Khmer OS Battambang", Arial, sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+        margin: 0;
+      }
+      .container {
+        background-color: #1e293b;
+        padding: 25px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+      h2 {
+        text-align: center;
+        color: #f59e0b;
+        margin-top: 0;
+      }
+      .input-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #334155;
+        border-radius: 5px;
+        background-color: #0f172a;
+        color: white;
+        outline: none;
+      }
+      button#addBtn {
+        padding: 10px 15px;
+        background-color: #f59e0b;
+        color: #0f172a;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button#addBtn:hover {
+        background-color: #d97706;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        background-color: #334155;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      /* Class សម្រាប់គូសបន្ទាត់កាត់ពេលធ្វើរួច */
+      .completed {
+        text-decoration: line-through;
+        opacity: 0.6;
+        background-color: #1e293b;
+      }
+      .delete-btn {
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .delete-btn:hover {
+        background-color: #dc2626;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>បញ្ជីការងារត្រូវធ្វើ (Todo List)</h2>
+
+      <!-- ប្រអប់បញ្ចូលទិន្នន័យ និងប៊ូតុងបន្ថែម -->
+      <div class="input-group">
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="សរសេរការងារថ្មីនៅទីនេះ..."
+        />
+        <button id="addBtn">បន្ថែម</button>
+      </div>
+
+      <!-- កន្លែងបង្ហាញបញ្ជីការងារ -->
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      // ១. ចាប់យក Elements ពី HTML មកទុកក្នុង Variable
+      const taskInput = document.querySelector("#taskInput");
+      const addBtn = document.querySelector("#addBtn");
+      const taskList = document.querySelector("#taskList");
+
+      // ២. អនុគមន៍ (Function) សម្រាប់បង្កើតការងារថ្មី
+      function addTask() {
+        const taskText = taskInput.value.trim(); // កាត់ដកឃ្លាដែលលើសចេញ
+
+        // ពិនិត្យមើលថាតើអ្នកប្រើប្រាស់បានវាយអក្សរឬនៅ
+        if (taskText === "") {
+          alert("សូមបញ្ចូលឈ្មោះការងារជាមុនសិន!");
+          return;
+        }
+
+        // បង្កើត Element <li> ថ្មី
+        const li = document.createElement("li");
+
+        // បង្កើត <span> សម្រាប់ដាក់អត្ថបទការងារ
+        const span = document.createElement("span");
+        span.textContent = taskText;
+
+        // បន្ថែម Event ពេលចុចលើអត្ថបទ ឱ្យវាគូសបន្ទាត់កាត់ (បញ្ជាក់ថាធ្វើរួច)
+        span.addEventListener("click", function () {
+          li.classList.toggle("completed");
+        });
+
+        // បង្កើតប៊ូតុងលុប (Delete Button)
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "លុប";
+        deleteBtn.className = "delete-btn";
+
+        // បន្ថែម Event ពេលចុចប៊ូតុងលុប ឱ្យលុប <li> នោះចេញពី DOM
+        deleteBtn.addEventListener("click", function () {
+          li.remove();
+        });
+
+        // បញ្ចូល <span> និង <button> ទៅក្នុង <li>
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+
+        // បញ្ចូល <li> ទៅក្នុង <ul>
+        taskList.appendChild(li);
+
+        // សម្អាតប្រអប់ input ឱ្យទទេវិញ និងដាក់ cursor ឱ្យស្រាប់
+        taskInput.value = "";
+        taskInput.focus();
+      }
+
+      // ៣. ភ្ជាប់ Event ទៅកាន់ប៊ូតុង "បន្ថែម"
+      addBtn.addEventListener("click", addTask);
+
+      // ៤. អនុញ្ញាតឱ្យចុចគ្រាប់ចុច Enter លើ Keyboard ដើម្បីបន្ថែមការងារបានដូចគ្នា
+      taskInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          addTask();
+        }
+      });
+    </script>
+  </body>
+</html>
