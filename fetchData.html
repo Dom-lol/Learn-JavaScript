@@ -7,22 +7,22 @@
   </head>
   <body>
     <script>
-      const url = "https://jsonplaceholder.typicode.com/users";
-      async function fetchData() {
+      const url = "http://localhost/rean/dataAPI/info.php";
+
+      async function users() {
         try {
           const response = await fetch(url);
           if (!response.ok) {
-            throw new Error(`http error status: ${response.status}`);
+            console.log("error", error);
           }
           const data = await response.json();
-          data.forEach((user) => {
-            console.log(`Name: ${user.name}`);
-          });
+          console.log(data);
         } catch (error) {
-          console.error(`Error fetching data ${error}`);
+          console.error("Error fetching data!", error);
         }
       }
-      fetchData();
+
+      users();
     </script>
   </body>
 </html>
